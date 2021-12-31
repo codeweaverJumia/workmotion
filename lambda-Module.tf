@@ -1,4 +1,4 @@
-module "lambda" {
+module "lambdamodule" {
   source = "github.com/codeweaverJumia/workmotion.git"
 
   name = var.name

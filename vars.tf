@@ -10,7 +10,7 @@ variable "timeout" {
   default = "50"
 }
 
-variable env_vars {
+variable "env_vars" {
   default = {}
 }
 
@@ -38,6 +38,6 @@ variable "zone_id" {
 variable "certificate_arn" {
   default = "arn:aws:acm:us-east-1:908815334059:certificate/01c54d4a-068e-4060-ad26-361bee6acec0"
 }
-variable with_api_gateway {
+variable "with_api_gateway" {
   default = true
 }

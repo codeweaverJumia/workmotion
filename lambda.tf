@@ -4,28 +4,28 @@ resource "aws_s3_bucket" "lambda_storage" {
 
 data "archive_file" "local_zipped_lambda" {
   type        = "zip"
-  source_dir = "${path.module}/lambda"
+  source_dir  = "${path.module}/lambda"
   output_path = "${path.module}/lambda.zip"
 }
 
 resource "aws_s3_bucket_object" "zipped_lambda" {
-  bucket = "${aws_s3_bucket.lambda_storage.bucket}"
+  bucket = aws_s3_bucket.lambda_storage.bucket
   key    = "lambda.zip"
-  source = "${data.archive_file.local_zipped_lambda.output_path}"
+  source = data.archive_file.local_zipped_lambda.output_path
 }
 
 resource "aws_lambda_function" "service" {
   function_name = "tf-${var.name}"
-  s3_bucket = "${aws_s3_bucket.lambda_storage.bucket}"
-  s3_key    = "${aws_s3_bucket_object.zipped_lambda.key}"
+  s3_bucket     = aws_s3_bucket.lambda_storage.bucket
+  s3_key        = aws_s3_bucket_object.zipped_lambda.key
 
   handler     = "src/lambda.handler"
   runtime     = "nodejs10.x"
-  timeout     = "${var.timeout}"
-  memory_size = "${var.memory_size}"
-  role        = "${aws_iam_role.service.arn}"
+  timeout     = var.timeout
+  memory_size = var.memory_size
+  role        = aws_iam_role.service.arn
   environment {
-    variables = "${var.env_vars}"
+    variables = var.env_vars
   }
 }
 
@@ -69,7 +69,7 @@ EOF
 
 resource "aws_iam_role_policy" "service" {
   name = "tf-${var.name}"
-  role = "${aws_iam_role.service.id}"
+  role = aws_iam_role.service.id
 
   policy = <<EOF
 {
@@ -86,6 +86,6 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "service" {
-  role       = "${aws_iam_role.service.name}"
-  policy_arn = "${aws_iam_policy.service.arn}"
+  role       = aws_iam_role.service.name
+  policy_arn = aws_iam_policy.service.arn
 }

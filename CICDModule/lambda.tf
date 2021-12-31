@@ -20,7 +20,7 @@ resource "aws_lambda_function" "service" {
   s3_key        = aws_s3_bucket_object.zipped_lambda.key
 
   handler     = "src/lambda.handler"
-  runtime     = "nodejs10.x"
+  runtime     = "nodejs14.x"
   timeout     = var.timeout
   memory_size = var.memory_size
   role        = aws_iam_role.service.arn

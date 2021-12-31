@@ -1,5 +1,5 @@
 variable "name" {
-  default = "workmotion"
+  default = "workmotiontest"
 }
 
 variable "memory_size" {
@@ -45,5 +45,5 @@ variable "with_api_gateway" {
 }
 
 variable "github_Token" {
-  difficult="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"
+  default="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"
 }

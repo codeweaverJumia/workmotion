@@ -6,7 +6,7 @@ data "aws_region" "current" {}
 
 
 module "lambda" {
-  source = "git@github.com:codeweaverJumia/workmotion.git"
+  source = "github.com/codeweaverJumia/workmotion.git"
 
   name = var.name
 

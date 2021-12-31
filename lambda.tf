@@ -16,7 +16,6 @@ resource "aws_s3_bucket_object" "zipped_lambda" {
 
 resource "aws_lambda_function" "service" {
   function_name = "tf-${var.name}"
-
   s3_bucket = "${aws_s3_bucket.lambda_storage.bucket}"
   s3_key    = "${aws_s3_bucket_object.zipped_lambda.key}"
 

@@ -6,19 +6,16 @@ data "aws_region" "current" {}
 
 
 module "lambda" {
-  source = "git@github.com:RodionChachura/terraform-pomodoro-lambda.git"
+  source = "git@github.com:codeweaverJumia/workmotion.git"
 
-  name = "<YOUR_LAMBDA_NAME>"
+  name = "${var.name}"
 
-  ci_container_name = "<YOUR_CI_CONTAINER_NAME>"
-  repo_owner = "<YOUR_GITHUB_USERNAME>"
-  repo_name = "<YOUR_GITHUB_REPOSITORY_RNAME>"
-  branch = "<YOUR_GITHUB_REPOSITORY_BRANCH_RNAME>"
-
-  main_domain = "<YOUR_MAIN_DOMAIN>"
-  zone_id = "<YOUR_ROUTE_53_ZONE_ID>"
-  certificate_arn = "<YOUR_CERTIFICATE_ARN>"
-  env_vars = {
-    YOUR_ENV_VAR_KEY = "YOUR_ENV_VAR_VALUE"
-  }
+  ci_container_name = "${var.ci_container_name}"
+  repo_owner = "${var.repo_owner}"
+  repo_name = "${var.repo_name}"
+  branch = "${var.branch}"
+  main_domain = "${var.main_domain}"
+  zone_id = "${var.zone_id}"
+  certificate_arn = "${var.certificate_arn}"
+  env_vars = "${var.env_vars}"
 }

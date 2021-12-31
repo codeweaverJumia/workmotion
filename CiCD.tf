@@ -110,8 +110,6 @@ resource "aws_codepipeline" "pipeline" {
 
   name     = "tf-${var.name}-pipeline"
   role_arn = "${aws_iam_role.codepipeline_role[0].arn}"
-
-  // solution from https://github.com/terraform-providers/terraform-provider-aws/issues/2854
   lifecycle {
     ignore_changes = [stage[0].action[0].configuration]
   }
@@ -133,6 +131,8 @@ resource "aws_codepipeline" "pipeline" {
         Owner      = "${var.repo_owner}"
         Repo       = "${var.repo_name}"
         Branch     = "${var.branch}"
+        PollForSourceChanges = "true"
+
       }
     }
   }

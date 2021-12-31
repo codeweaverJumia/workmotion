@@ -1,6 +1,5 @@
 resource "aws_api_gateway_domain_name" "api" {
   count = "${var.main_domain != "" ? 1 : 0}"
-
   certificate_arn = "${var.certificate_arn}"
   domain_name     = "${var.name}.${var.main_domain}"
 }

@@ -45,5 +45,5 @@ variable "with_api_gateway" {
 }
 
 variable "github_Token" {
-  default="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"
+  default="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"
 }

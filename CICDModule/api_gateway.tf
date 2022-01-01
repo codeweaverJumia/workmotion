@@ -11,12 +11,6 @@ resource "aws_api_gateway_method" "api_root" {
   resource_id   = aws_api_gateway_rest_api.api[0].root_resource_id
   http_method   = "ANY"
   authorization = "NONE"
-  request_parameters = {
-
-    "method.request.querystring.username" = true
-    "method.request.querystring.password" = true
-
-  }
 }
 
 resource "aws_api_gateway_integration" "api_root" {
@@ -46,12 +40,6 @@ resource "aws_api_gateway_method" "api" {
   resource_id   = aws_api_gateway_resource.api[0].id
   http_method   = "ANY"
   authorization = "NONE"
-  request_parameters = {
-
-    "method.request.querystring.username" = true
-    "method.request.querystring.password" = true
-
-  }
 }
 
 resource "aws_api_gateway_integration" "api" {
@@ -84,12 +72,6 @@ resource "aws_api_gateway_method" "resource_options" {
   resource_id   = aws_api_gateway_resource.api[0].id
   http_method   = "OPTIONS"
   authorization = "NONE"
-  request_parameters = {
-
-    "method.request.querystring.username" = true
-    "method.request.querystring.password" = true
-
-  }
 }
 
 resource "aws_api_gateway_integration" "resource_options_integration" {
